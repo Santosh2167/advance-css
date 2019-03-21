@@ -7,15 +7,19 @@ Dark green: #28b485
 
 */
 
-*{
+*,
+*::after,
+*::before{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
+  
 }
 
 html {
-  font-size: 10px; /*setting root font size*/
+  font-size: 62.5%; /*setting root font size*/
   /*setting it to 10 and not 16 px means it is easy to do the calculation*/
+  /* 10/16 *100 */
 }
 
 body {
@@ -25,6 +29,7 @@ body {
   line-height: 1.7;
   color: #777;
   padding: 3rem; /*it takes font size of parent as reference*/
+  box-sizing: border-box;
 }
 
 .header {
@@ -39,17 +44,17 @@ body {
   position: relative;
 }
 
-.logo-box {
+.header__logo-box {
   position: absolute;
   top: 4rem;
   left: 4rem;
 }
 
-.logo{
+.header__logo{
   height: 3.5rem;
 }
 
-.text-box {
+.header__text-box {
   position: absolute;
   top: 40%;
   left: 50%;
@@ -67,7 +72,7 @@ body {
   margin-bottom: 6rem;
 }
 
-.heading-primary-main {
+.heading-primary--main {
   display: block;
   font-size: 6rem;
   font-weight: 400;
@@ -141,7 +146,7 @@ body {
   }
 }
 
-.btn-animated {
+.btn--animated {
   animation: moveInBottom .5s ease-out .75s;
   animation-fill-mode: backwards;
 }
@@ -170,7 +175,7 @@ body {
   transform: translateY(-0.1rem);
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,.2);
 }
-.btn-white{
+.btn--white{
   background-color: #fff;
   color: #777;
 }
@@ -196,7 +201,7 @@ top: 0;
 
 }
 
-.btn-white::after{
+.btn--white::after{
   background-color: #fff;
 }
 
