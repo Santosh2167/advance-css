@@ -2,6 +2,7 @@
 $color-primary: #55c57a;
 $color-primary-light:#7ed56f;
 $color-primary-dark:  #28b485;
+$color-black: #000;
 *,
 *::after,
 *::before{
@@ -37,27 +38,33 @@ body {
   /* clip-path: polygon(50% 0%, 100% 100%, 0 100%); triangle */
   /* clip-path: polygon(x y,x y,x y); */
   position: relative;
-}
 
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem;
-}
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+  
+  &__logo{
+    height: 3.5rem;
+  }
 
-.header__logo{
-  height: 3.5rem;
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center; 
+    /* this is to keep button on the centre of the page */
+    /* button is not real button, it is background color white */
+  }
+  
 }
+//dfdf
 
-.header__text-box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  text-align: center; 
-  /* this is to keep button on the centre of the page */
-  /* button is not real button, it is background color white */
-}
+
+
+
 .heading-primary{
   color: #fff;
   text-transform: uppercase;
@@ -65,29 +72,31 @@ body {
   /* this is to prevent little shakey at the end of the animation  */
   /* it determines back part of the element when we transform it is visible or hidden  */
   margin-bottom: 6rem;
+
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+  
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    /* animation-delay: 3s; it will wait for 3 sec before playing the animation */
+    /* animation-iteration-count: 3; this will case animation 3 times */
+    animation-timing-function: ease-out;
+  }
+  
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation-name: moveInRight;
+    animation-duration: 3s;
+  }
+  
 }
 
-.heading-primary--main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
-
-  animation-name: moveInLeft;
-  animation-duration: 1s;
-  /* animation-delay: 3s; it will wait for 3 sec before playing the animation */
-  /* animation-iteration-count: 3; this will case animation 3 times */
-  animation-timing-function: ease-out;
-}
-
-.heading-primary-sub {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.75rem;
-  animation-name: moveInRight;
-  animation-duration: 3s;
-}
 
 /* ANIMATION STARTS */
 
@@ -141,13 +150,15 @@ body {
   }
 }
 
-.btn--animated {
-  animation: moveInBottom .5s ease-out .75s;
-  animation-fill-mode: backwards;
-}
+.btn {
+  //we created .btn so that we can nest it, we did not have just .btn {} in our css
+  &--animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
+  }
 
-.btn:link,
-.btn:visited {
+  &:link,
+&:visited {
   text-transform: uppercase;
   text-decoration: none;
   padding: 1.5rem 4rem;
@@ -161,21 +172,34 @@ body {
 
 }
 
-.btn:hover {
+&:hover {
   transform: translateY(-3px); /*if you want to move up then negative value,if you want to move down then it is positive value*/
-  box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
+  box-shadow: 0 1rem 2rem rgba($color-black,.2);//this way of writing color works only in sass not in css. in css you have to give rgb values from 0 to 255
+
+  &::after{
+    /* ::after when the button is on hover state */
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+    /* this is a trick to fade something out */
+  
+  }
+
 }
 
-.btn:active {
+&:active {
   transform: translateY(-0.1rem);
-  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.2);
+  box-shadow: 0 0.5rem 1rem rgba($color-black,.2);
 }
-.btn--white{
+&--white{
   background-color: #fff;
   color: #777;
+
+  &::after{
+    background-color: #fff;
+  }
 }
 
-.btn::after {
+&::after {
   /* we put exactly a button we have but we put behind the button, which appears only after the event */
   content: ""; 
   /* we hve to have content otherwise it wont get displaied */
@@ -196,17 +220,15 @@ top: 0;
 
 }
 
-.btn--white::after{
-  background-color: #fff;
-}
 
-.btn:hover::after{
-  /* ::after when the button is on hover state */
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-  /* this is a trick to fade something out */
+
+
 
 }
+
+
+
+
 
 /* below is for the button */
 
