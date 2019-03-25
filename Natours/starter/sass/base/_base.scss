@@ -1,0 +1,24 @@
+*,
+*::after,
+*::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  
+}
+
+html {
+  font-size: 62.5%; /*setting root font size*/
+  /*setting it to 10 and not 16 px means it is easy to do the calculation*/
+  /* 10/16 *100 */
+}
+
+body {
+  font-family: "Lato",sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  padding: 3rem; /*it takes font size of parent as reference*/
+  box-sizing: border-box;
+}

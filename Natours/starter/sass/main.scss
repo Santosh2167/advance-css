@@ -1,230 +1,29 @@
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
 
-$color-primary: #55c57a;
-$color-primary-light:#7ed56f;
-$color-primary-dark:  #28b485;
-$color-black: #000;
-*,
-*::after,
-*::before{
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-  
-}
+@import "./base/animation";
+@import "./base/base";
+@import "./base/typography";
+@import "./base/utilities";
 
-html {
-  font-size: 62.5%; /*setting root font size*/
-  /*setting it to 10 and not 16 px means it is easy to do the calculation*/
-  /* 10/16 *100 */
-}
+@import "./components/button";
 
-body {
-  font-family: "Lato",sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.7;
-  color: #777;
-  padding: 3rem; /*it takes font size of parent as reference*/
-  box-sizing: border-box;
-}
+@import "./layout/grid";
+@import "./layout/header";
 
-.header {
-  height: 95vh;
-  background-image: linear-gradient(to right bottom,rgba($color-primary-light,0.8),rgba($color-primary-dark,0.8)), url(./../img/hero.jpg);
-  background-size: cover;
-  background-position: top;
-  clip-path: polygon(0 0,100% 0%,100% 75%,0 100%);
-  /* clip-path: polygon(50% 0, 100% 100%, 0 100%);  */
-  /* clip-path: polygon(50% 0%, 100% 100%, 0 100%); triangle */
-  /* clip-path: polygon(x y,x y,x y); */
-  position: relative;
-
-  &__logo-box {
-    position: absolute;
-    top: 4rem;
-    left: 4rem;
-  }
-  
-  &__logo{
-    height: 3.5rem;
-  }
-
-  &__text-box {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center; 
-    /* this is to keep button on the centre of the page */
-    /* button is not real button, it is background color white */
-  }
-  
-}
-//dfdf
-
-
-
-
-.heading-primary{
-  color: #fff;
-  text-transform: uppercase;
-  backface-visibility: hidden;
-  /* this is to prevent little shakey at the end of the animation  */
-  /* it determines back part of the element when we transform it is visible or hidden  */
-  margin-bottom: 6rem;
-
-  &--main {
-    display: block;
-    font-size: 6rem;
-    font-weight: 400;
-    letter-spacing: 3.5rem;
-  
-    animation-name: moveInLeft;
-    animation-duration: 1s;
-    /* animation-delay: 3s; it will wait for 3 sec before playing the animation */
-    /* animation-iteration-count: 3; this will case animation 3 times */
-    animation-timing-function: ease-out;
-  }
-  
-  &--sub {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1.75rem;
-    animation-name: moveInRight;
-    animation-duration: 3s;
-  }
-  
-}
-
-
-/* ANIMATION STARTS */
-
-@keyframes moveInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-10rem); /*negative value goes to the left(your right), positive value goes to the right (your left)*/
-  }
-
-  80% {
-    transform: translateX(1rem); /*it will go to the right side*/
-  }
-
-  100% {
-    opacity:1;
-    tranform: translate(0);
-  }
-}
-
-@keyframes moveInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(10rem); /*negative value goes to the left(your right), positive value goes to the right(your left)*/
-  }
-
-  80% {
-    transform: translateX(-1rem); /*it will go to the right side*/
-  }
-
-  100% {
-    opacity:1;
-    tranform: translate(0);
-  }
-}
-
-/* if you want to do this animation in hover then you can do like this
-
-.logo:hover {
-  animation: moveInRight 1s ease-out;
-} */
-
-@keyframes moveInBottom {
-  0% {
-    opacity: 0;
-    transform: translateX(3rem); /*negative value goes to the left(your right), positive value goes to the right(your left)*/
-  }
-
-   100% {
-    opacity:1;
-    tranform: translate(0);
-  }
-}
-
-.btn {
-  //we created .btn so that we can nest it, we did not have just .btn {} in our css
-  &--animated {
-    animation: moveInBottom .5s ease-out .75s;
-    animation-fill-mode: backwards;
-  }
-
-  &:link,
-&:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block;
-  border-radius: 10rem;
-  /* this is adding border to the button */
-  transition: all .2s; 
-  /* all the transition property are activated */
-  position:relative;
-  /* this is for ::after element */
-
-}
-
-&:hover {
-  transform: translateY(-3px); /*if you want to move up then negative value,if you want to move down then it is positive value*/
-  box-shadow: 0 1rem 2rem rgba($color-black,.2);//this way of writing color works only in sass not in css. in css you have to give rgb values from 0 to 255
-
-  &::after{
-    /* ::after when the button is on hover state */
-    transform: scaleX(1.4) scaleY(1.6);
-    opacity: 0;
-    /* this is a trick to fade something out */
-  
-  }
-
-}
-
-&:active {
-  transform: translateY(-0.1rem);
-  box-shadow: 0 0.5rem 1rem rgba($color-black,.2);
-}
-&--white{
-  background-color: #fff;
-  color: #777;
-
-  &::after{
-    background-color: #fff;
-  }
-}
-
-&::after {
-  /* we put exactly a button we have but we put behind the button, which appears only after the event */
-  content: ""; 
-  /* we hve to have content otherwise it wont get displaied */
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  /* pseudo element after is taken as child of the element
-  where we are doing after, in this case button so 100% height and width is 100% of the button itself */
-  border-radius: 10rem;
-/* following is to put it behind of the parent button */
-  position: absolute; 
-/* rn it is wrt header, we have to make it wrt button itself */
-  /* so we have to set position of the button relative so that absolute here takes that as its reference   */
-top: 0;
-  left: 0;
-  z-index: -1;
-  transition: all .4s;
-
-}
 
 
 
 
 
-}
+/* ANIMATION STARTS */
+
+
+
+
+
+
 
 
 

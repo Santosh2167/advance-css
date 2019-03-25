@@ -1,0 +1,49 @@
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); /*negative value goes to the left(your right), positive value goes to the right (your left)*/
+  }
+
+  80% {
+    transform: translateX(1rem); /*it will go to the right side*/
+  }
+
+  100% {
+    opacity:1;
+    tranform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); /*negative value goes to the left(your right), positive value goes to the right(your left)*/
+  }
+
+  80% {
+    transform: translateX(-1rem); /*it will go to the right side*/
+  }
+
+  100% {
+    opacity:1;
+    tranform: translate(0);
+  }
+}
+
+/* if you want to do this animation in hover then you can do like this
+
+.logo:hover {
+  animation: moveInRight 1s ease-out;
+} */
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateX(3rem); /*negative value goes to the left(your right), positive value goes to the right(your left)*/
+  }
+
+   100% {
+    opacity:1;
+    tranform: translate(0);
+  }
+}

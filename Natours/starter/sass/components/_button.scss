@@ -1,0 +1,75 @@
+.btn {
+  //we created .btn so that we can nest it, we did not have just .btn {} in our css
+  &--animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
+  }
+
+  &:link,
+&:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  border-radius: 10rem;
+  /* this is adding border to the button */
+  transition: all .2s; 
+  /* all the transition property are activated */
+  position:relative;
+  /* this is for ::after element */
+
+}
+
+&:hover {
+  transform: translateY(-3px); /*if you want to move up then negative value,if you want to move down then it is positive value*/
+  box-shadow: 0 1rem 2rem rgba($color-black,.2);//this way of writing color works only in sass not in css. in css you have to give rgb values from 0 to 255
+
+  &::after{
+    /* ::after when the button is on hover state */
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+    /* this is a trick to fade something out */
+  
+  }
+
+}
+
+&:active {
+  transform: translateY(-0.1rem);
+  box-shadow: 0 0.5rem 1rem rgba($color-black,.2);
+}
+&--white{
+  background-color: #fff;
+  color: #777;
+
+  &::after{
+    background-color: #fff;
+  }
+}
+
+&::after {
+  /* we put exactly a button we have but we put behind the button, which appears only after the event */
+  content: ""; 
+  /* we hve to have content otherwise it wont get displaied */
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  /* pseudo element after is taken as child of the element
+  where we are doing after, in this case button so 100% height and width is 100% of the button itself */
+  border-radius: 10rem;
+/* following is to put it behind of the parent button */
+  position: absolute; 
+/* rn it is wrt header, we have to make it wrt button itself */
+  /* so we have to set position of the button relative so that absolute here takes that as its reference   */
+top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s;
+
+}
+
+
+
+
+
+}
