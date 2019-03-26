@@ -14,19 +14,36 @@
 
 //   $grid-width: 114rem;
 // $gutter-vertical: 8rem;
-// $gutter-horizantal: 6rem;
+// $gutter-horizontal: 6rem;
   @include clearfix;
-
-  .col-1-of-2 {
-    //look at the image you have screenshot. the width of the first bar is total width (100%) - gutter space divide by 2
-    width: calc((100%-#{$gutter-horizontal})/2);
-    // background-color: orangered;
+  
+  [class^="col-"] {
+    background-color: orangered;
     float: left;
     //as soon as all the child are floating the container collapses and has height 0px
     //we use clear fix hack to fix that problem
 
+  }
+
+  .col-1-of-2 {
+    //look at the image you have screenshot. the width of the first bar is total width (100%) - gutter space divide by 2
+    width: calc((94.7%-#{$gutter-horizontal})/2);
+    
+
+
     &:not(:last-child){
-      margin-right: $gutter-horizantal;
+      margin-right: $gutter-horizontal;
     }
+  }
+
+  .col-1-of-3 {
+
+    width: calc((94.7%- 2* #{$gutter-horizontal })/3);
+    background-color: orangered;
+    
+    &:not(:last-child){
+      margin-right: $gutter-horizontal;
+    }
+
   }
 }
