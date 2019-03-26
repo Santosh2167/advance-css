@@ -2,7 +2,6 @@
   max-width: $grid-width; 
   // 1140px is common width that people give these days we convert that into rem
   //if it is less then 114 rem then it will simply fill 100% of the view port
-  background-color: #eee;
   margin: 0 auto;
   //to center a block element inside a block element
   
@@ -18,7 +17,6 @@
   @include clearfix;
   
   [class^="col-"] {
-    background-color: orangered;
     float: left;
     //as soon as all the child are floating the container collapses and has height 0px
     //we use clear fix hack to fix that problem
